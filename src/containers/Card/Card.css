@@ -1,0 +1,117 @@
+.OuterCard {
+    -webkit-box-shadow: 0 1px 3px -1px #777;
+       -moz-box-shadow: 0 1px 3px -1px #777;
+            box-shadow: 0 1px 3px -1px #777;
+    
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d3d3d3;
+    background-color: white;
+    color: #44a6ad;
+    padding: 20px;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    font-size:25px;
+    margin:  5px 2px 5px 2px;
+
+}
+
+
+.InnerCard {
+    border-style: solid;
+    border-width: 0px 0px 0px 0px;
+    border-color: #d3d3d3;
+    border-radius: 0;
+    padding: 10px 0px 10px 0px;
+    padding-top: 5px;
+    margin: 0 0;
+    background-color: white;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    font-size:20px;
+    color: #656565;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.CardName {
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #44a6ad;
+}
+
+.AddButton {
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    background-image: url('../../Images/add16.png'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none; 
+}
+
+.AddButton:hover {
+    background-image: url('../../Images/addhover16.png'); 
+}
+
+.EditButton {
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    background-image: url('../../Images/edit16.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none; 
+}
+
+.EditButton:hover {
+    background-image: url('../../Images/edithover16.png'); 
+}
+
+.DeleteButton {
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    background-image: url('../../Images/delete16.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none; 
+}
+
+.DeleteButton:hover {
+    background-image: url('../../Images/deletehover16.png'); 
+}
+
+.CardTitle {
+    color: #343333;
+}
+
+
+.CardSubtitle {
+    font-weight: bold;
+}
+
+.StartDate {
+    display: inline-block;
+    color: #3aafb8;
+    font-size: 15px;
+    padding-right: 5px;
+}
+
+.LastDate {
+    display: inline-block;
+    color: #3aafb8;
+    font-size: 15px;
+}
+
+.CardCity {
+    display: block;
+    color: black;
+    font-size: 15px; 
+}
+
+.CardLevel {
+    color: #3aafb8;
+    font-size: 15px;
+}

@@ -1,0 +1,61 @@
+.Toolbar {
+    
+    /* background-color: #1b65d0; */
+    background-color: #2151a2;
+    height: 50px;
+    
+    
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 5%;
+    box-sizing: border-box;
+    z-index: 90;
+    -webkit-box-shadow: 0 1px 3px -1px white;
+    -moz-box-shadow: 0 1px 3px -1px white;
+         box-shadow: 0 1px 3px -1px white;
+    
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+.AppName {
+    font-family: 'Poppins', sans-serif;
+    font-size: x-large;
+    text-decoration: none;
+
+}
+
+.AppName:link {
+    color: white;
+}
+
+.AppName:visited {
+    color: white;
+}
+
+.AppName:hover {
+    color: white;
+}
+
+.AppName:active {
+    color: white;
+}
+
+
+.Toolbar nav {
+    height: 100%;
+}
+
+@media (max-width: 1000px) {
+    .Toolbar {
+        padding: 0px 20px;
+    }
+  }
+

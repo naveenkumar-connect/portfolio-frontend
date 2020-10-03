@@ -1,0 +1,43 @@
+.SingleNavigationItem {
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 16px 0;
+    padding-left: 15px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.NavLink:link {
+    color: white;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.NavLink:visited {
+    color: white;
+
+}
+
+.NavLink:hover {
+    color: white;
+}
+
+.NavLink:active {
+    color: white;
+
+}
+
+.NavigationButton {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    outline: none;
+}
+
+
+

@@ -1,0 +1,50 @@
+.item {
+    -webkit-box-shadow: 0 1px 3px -1px #777;
+       -moz-box-shadow: 0 1px 3px -1px #777;
+            box-shadow: 0 1px 3px -1px #777;
+    
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d3d3d3;
+    border-radius: 20px;
+    margin-bottom: 10px;
+
+}
+
+.CardBox {
+    width:100%;
+}
+
+.Box1 {
+    float: left;
+    width: 62%;
+}
+
+.Box2 {
+    float: left;
+    width: 38%;
+}
+
+@media(max-width:800px) {
+    .Box1 {
+        width: 100%;
+    }
+    
+    .Box2 {
+        width: 100%;
+    } 
+}
+
+.CardSelectorStrip {
+    background-color: #141829;
+    border-style: solid;
+    border-width: 0px;
+    border-color: grey;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    padding: 2px 0px;
+    cursor: pointer;
+}

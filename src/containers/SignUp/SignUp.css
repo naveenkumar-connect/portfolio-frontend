@@ -1,0 +1,65 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.Title {
+    padding: 5px 15px;
+    font-size: 25px;
+    margin: 0 5px;
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+    color: #343A40;
+}
+
+.SignUpBox {
+    margin: 70px auto;
+    margin-bottom: 10px;
+    padding: 20px 0px;
+    -webkit-box-shadow: 0 1px 3px -1px #777;
+       -moz-box-shadow: 0 1px 3px -1px #777;
+            box-shadow: 0 1px 3px -1px #777;
+    
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d3d3d3;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    width: 600px;
+
+}
+
+@media (max-width: 600px) {
+    .SignUpBox {
+        width: 95%;
+    }
+}
+
+.Logo {
+    
+    display: inline-block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 0px;
+    border-color: #d3d3d3;
+    padding: 0px;
+
+}
+
+.SignUpImageBox {
+    display: flex;
+    justify-content: center;
+}
+
+.SignUpErrorDisplay {
+    color: red;
+    font-size: 12px;
+    margin: 0px;
+
+    border-style: solid;
+    border-width: 0px;
+    border-color: red;
+    text-align: center;
+}

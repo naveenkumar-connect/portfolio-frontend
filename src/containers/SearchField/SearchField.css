@@ -1,0 +1,150 @@
+.Search {
+    margin: auto;
+    margin-right: 20px;
+    border-radius: 3px;
+    border: none;
+    -webkit-box-shadow: 0 1px 3px -1px white;
+       -moz-box-shadow: 0 1px 3px -1px white;
+            box-shadow: 0 1px 3px -1px white;
+            padding: 3px;
+    border-color: #007bff;
+    border-style: solid;
+    border-width: 1px;
+    color: #007bff;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+}
+
+@media (max-width: 700px) {
+    .Search {
+        border-style: solid;
+        border-width: 1px;
+        border-color:red;
+        margin-bottom: 20px;
+    }
+}
+
+.Tiles {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d3d3d3;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px 15px;
+    background-color: whitesmoke;
+    overflow: auto;
+}
+
+.Tiles:hover {
+    -webkit-box-shadow: 0 1px 3px -1px #ccc;
+    -moz-box-shadow: 0 1px 3px -1px #ccc;
+         box-shadow: 0 1px 3px -1px #ccc;
+         border-color: #007bff;
+}
+
+.SearchImg {
+    margin: 0px;
+    width: 60px;
+    height: 60px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 50px;
+    border-color: grey;
+}
+
+.SearchImage {
+    border-style: solid;
+    border-width: 0px;
+    border-color: red;
+    padding: 0px;
+    margin: 0px;
+    width: 100px;
+    float: left;
+}
+
+.SearchUsername {
+    border-style: solid;
+    border-width: 0px;
+    border-color: #ccc;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: #007bff;
+    margin-top: 2px;
+}
+
+.SearchName {
+    border-style: solid;
+    border-width: 0px;
+    border-color: #ccc;
+    
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #343A40;
+}
+
+.SearchProfile {
+    border-style: solid;
+    border-width: 0px;
+    border-color: #ccc;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #007bff;
+}
+
+.ButtonGroupAndPageNo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 15px;
+    
+    
+}
+
+.PageNo {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    color: grey;
+}
+
+.PreNextButton {
+    padding: 0px 5px;
+    transition: all 0.4s ease 0s;
+    border-style: solid;
+    border-width: 0px;
+    border-color: grey;
+    border-radius: 3px;
+    color: #277e93;
+    background-color: transparent;
+    margin-top: 0px;
+    margin-right: 10px;
+    font-size: 15px;
+    vertical-align: top;
+}
+
+.PreNextButton:hover {
+    transition: all 0.4s ease 0s;
+    background-color: none;
+    color: black;
+}
+
+.PreNextButton:focus {
+    background-color: none;
+    color: #005a6e;
+}
+
+.PreNextButton:disabled {
+    background-color: none;
+    color: rgb(189, 186, 186);
+}
+
+.SearchResults {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #007bff;
+    padding: 10px 15px;
+}
+
+.NoSearchResult {
+    text-align: center;
+    padding: 30px 0px 40px 0px;
+}

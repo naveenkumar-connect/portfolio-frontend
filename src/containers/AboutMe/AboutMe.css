@@ -1,0 +1,220 @@
+.Submenu {
+    /* background-color: #213d77; */
+    background-color: #213d77;
+    width:100%;
+
+    border-style: solid;
+    border-width: 0px;
+    border-color: red;
+    padding: 60px 5%;
+    padding-bottom: 10px;
+    overflow: auto;
+}
+
+
+@media (max-width: 1000px) {
+    .Submenu {
+        padding: 60px 2%;
+        padding-bottom: 10px;
+    }
+}
+
+.ProfilePictureBox {
+    width: 30%;
+    border-style: solid;
+    border-width: 0px;
+    border-color: grey;
+    float: left;
+    text-align: center;
+}
+
+.ProfilePicture {
+    width: 150px;
+    height: 150px;
+    
+    -webkit-box-shadow: 0 1px 10px -2px #6a7078;
+       -moz-box-shadow: 0 1px 10px -2px #6a7078;
+            box-shadow: 0 1px 10px -2px #6a7078;
+
+    border-radius: 100px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.Info {
+    
+    font-family: 'Roboto', sans-serif;
+    width:70%;
+    border-style: solid;
+    border-width: 0px;
+    border-color: grey;
+    float: left;
+    text-align: left;
+    
+}
+
+.Contacts{
+    width:100%;
+    background-color:#1c2a4f;
+    color:white;
+    overflow: auto;
+    margin:auto;
+}
+
+.Test {
+    border-style: solid;
+    border-width: 0px;
+    border-color: white;
+    float: left;
+    text-align: left;
+    padding: 5px 10%;
+    width: 50%;
+    vertical-align: bottom;
+    
+}
+
+.InnerCard {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d3d3d3;
+    border-radius: 20px;
+    padding: 10px;
+    padding-top: 0;
+    margin: 5px 0;
+    background-color: white;
+}
+
+.Name {
+    font-weight: 300;
+    font-size: 35px;
+    color: white;
+    margin-bottom: 0;
+}
+
+.UserName {
+    padding-top: 5px;
+    font-weight: 300;
+    font-size: 15px;
+    color: white;
+}
+
+.Profile {
+    font-weight: 400;
+    font-size: 20px;
+    color: #b5ccd3;
+}
+
+.Description {
+    margin-top: 5px;
+    font-weight: 300;
+    color: whitesmoke;
+    font-size: 15px;
+    
+}
+
+.City {
+    margin-top: 10px;
+    border-style: solid;
+    border-width: 0px;
+    border-color: white;
+    overflow: auto;
+}
+
+.SubCity {
+    display:"inline-block";
+    font-weight: 300;
+    color: whitesmoke;
+    font-size: 15px;
+    float: left;
+    border-style: solid;
+    border-width: 0px;
+    border-color: white;
+}
+
+.InfoEditButton {
+    float: right;
+    margin-top: 8px;
+}
+
+.ImageIcon {
+    display:"inline-block";
+    border-style: solid;
+    border-width: 0px;
+    border-color: white;
+    margin:0;
+    padding: 3px;
+    float: left;
+    
+}
+
+.SubContact {
+    display:"inline-block";
+    border-style: solid;
+    border-width: 0px;
+    border-color: yellow;
+    padding-left: 10px;
+    float: left;
+}
+
+@media(max-width:650px) {
+    .ProfilePictureBox {
+        width: 100%;
+    }
+
+    .Info {
+        text-align: center;
+        width: 100%;
+    }
+
+    .City {
+        display: flex;
+        justify-content: center;
+    }
+
+    .InfoEditButton {
+        float: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .Test {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+.SubmenuEditButton {
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    background-image: url('../../Images/submenuedit16.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none; 
+    margin: 1px;
+}
+
+.SubmenuEditButton:hover {
+    background-image: url('../../Images/submenuedithover16.png'); 
+}
+
+.SubmenuChangePassword {
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    background-image: url('../../Images/lock16.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    margin: 1px; 
+}
+
+.SubmenuChangePassword:hover {
+    background-image: url('../../Images/lockhover16.png'); 
+}

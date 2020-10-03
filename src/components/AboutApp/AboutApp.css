@@ -1,0 +1,77 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.AboutAppTitle {
+    padding: 5px 15px;
+    font-size: 20px;
+    margin: 0 5px;
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+    color: #007bff;
+}
+
+.AboutAppBox {
+    margin: 70px 40px;
+    -webkit-box-shadow: 0 1px 3px -1px #777;
+       -moz-box-shadow: 0 1px 3px -1px #777;
+            box-shadow: 0 1px 3px -1px #777;
+    
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d3d3d3;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+}
+
+.ContentAndImage {
+    overflow: auto;
+}
+
+.AboutAppContent {
+    border-style: solid;
+    border-width: 0px;
+    border-color: #007bff;
+    padding: 20px;
+    color: #777;
+    width: 60%;
+    float: left;
+
+}
+
+.AboutAppContent h4 {
+    color: #2151a2;
+}
+
+.AboutAppImage {
+    border-style: solid;
+    border-width: 0px;
+    border-color: red;
+    width: 40%;
+    padding: 20px;
+    float: left;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .AboutAppContent {
+        width: 100%;
+    }
+    .AboutAppImage {
+        width: 100%;
+    }
+    .AboutAppBox {
+        margin: 70px 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .AboutAppBox {
+        margin: 0px 0px;
+    }
+}
