@@ -18,7 +18,7 @@ class SignUp extends Component {
 
     onSubmitHandler = (values) => {
         console.log(values);
-        axios.post('http://127.0.0.1:8000/api/user/profile/',
+        axios.post('/api/user/profile/',
             {
                 username: values.username,
                 email: values.email,
@@ -30,7 +30,7 @@ class SignUp extends Component {
                 console.log(response);
                 if(response.data.status == 'profileCreated')
                 {
-                    axios.post('http://127.0.0.1:8000/api/user/login/',{
+                    axios.post('/api/user/login/',{
                             username: values.username,
                             password: values.password,
                             returnSecureToken: true

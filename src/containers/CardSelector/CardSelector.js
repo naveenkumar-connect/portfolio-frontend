@@ -28,7 +28,7 @@ class CardSelector extends Component {
 
     onSubmitHandler = (event) => {
         event.preventDefault();
-        axios.patch('http://127.0.0.1:8000/api/info/cards/'+this.props.inheritUrlUsername+'/'+this.props.inheritId+'/', 
+        axios.patch('/api/info/cards/'+this.props.inheritUrlUsername+'/'+this.props.inheritId+'/', 
             this.state.cardActiveStatus)
             .then(response => {
                 console.log("Card Selector worked");

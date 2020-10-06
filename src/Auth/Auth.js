@@ -37,7 +37,7 @@ class Auth extends Component {
     }
   
     login = () => {
-        axios.post('http://127.0.0.1:8000/api/user/login/', this.state.auth)
+        axios.post('/api/user/login/', this.state.auth)
             .then(response => { 
                 if(response.data.status == 'success')
                 {  

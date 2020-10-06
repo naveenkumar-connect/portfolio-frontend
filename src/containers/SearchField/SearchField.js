@@ -41,7 +41,7 @@ class SearchField extends Component {
     onSubmitHandler = (event) => {
         event.preventDefault();
         this.toggleModalFlag();
-        this.getValue('http://127.0.0.1:8000/api/user/searchprofile/?search=' + this.state.searchFieldValue + '&page=1');
+        this.getValue('/api/user/searchprofile/?search=' + this.state.searchFieldValue + '&page=1');
     }
 
     preHandler = () => {
@@ -80,7 +80,7 @@ class SearchField extends Component {
     }
 
     getDetails = (user) => {
-        axios.get('http://127.0.0.1:8000/api/info/details/'+user)
+        axios.get('/api/info/details/'+user)
             .then(response => {
                 response.data.map( (detail,index) => {
                     var tempUser = {};

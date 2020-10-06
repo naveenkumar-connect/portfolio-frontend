@@ -35,7 +35,7 @@ class ProfilePicture extends Component {
         data.append('profilePic', this.state.profilePictureFile);
         data.append('profilePicPresent', true);
 
-        axios.patch('http://127.0.0.1:8000/api/info/details/'+this.props.inheritUrlUsername+'/'+this.props.inheritId+'/', 
+        axios.patch('/api/info/details/'+this.props.inheritUrlUsername+'/'+this.props.inheritId+'/', 
             data,
             {
                 headers: {
@@ -55,7 +55,7 @@ class ProfilePicture extends Component {
         var data = new FormData();
         data.append('profilePicPresent', false);
 
-        axios.patch('http://127.0.0.1:8000/api/info/details/'+this.props.inheritUrlUsername+'/'+this.props.inheritId+'/', 
+        axios.patch('/api/info/details/'+this.props.inheritUrlUsername+'/'+this.props.inheritId+'/', 
             data,
             {
                 headers: {

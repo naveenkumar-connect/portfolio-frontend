@@ -39,7 +39,7 @@ class Home extends Component
     }
 
     componentDidMount = () => {
-      axios.get('http://127.0.0.1:8000/api/user/profile/'+this.props.match.params.urlUsername, {
+      axios.get('/api/user/profile/'+this.props.match.params.urlUsername, {
               headers: {
               'Authorization' : `token ${this.props.token}`
               }
@@ -58,7 +58,7 @@ class Home extends Component
           }
           ); 
 
-      axios.get('http://127.0.0.1:8000/api/info/details/'+this.props.match.params.urlUsername)
+      axios.get('/api/info/details/'+this.props.match.params.urlUsername)
           .then(response => {
               console.log('response2 in AboutMe');
               response.data.map( (detail,index) => {
@@ -72,7 +72,7 @@ class Home extends Component
           }
       ); 
 
-      axios.get('http://127.0.0.1:8000/api/info/cards/'+this.props.match.params.urlUsername)
+      axios.get('/api/info/cards/'+this.props.match.params.urlUsername)
           .then(response => {
               console.log('in Cards');
               response.data.map( (card,index) => {
@@ -128,7 +128,7 @@ class Home extends Component
                     {this.state.cardActiveStatus.experience?
                       <Card
                         name = 'Experience'
-                        api = {'http://127.0.0.1:8000/api/info/experience/' + urlUsername + '/'}
+                        api = {'/api/info/experience/' + urlUsername + '/'}
                         urlUsername = { urlUsername } 
                         fieldInfo = { [
                           { nameOfField: 'company', 
@@ -168,7 +168,7 @@ class Home extends Component
                     {this.state.cardActiveStatus.projects?
                       <Card 
                         name = 'Projects'
-                        api = {'http://127.0.0.1:8000/api/info/projects/' + urlUsername + '/'}
+                        api = {'/api/info/projects/' + urlUsername + '/'}
                         urlUsername = { urlUsername } 
                         fieldInfo = { [
                           { nameOfField: 'title', 
@@ -190,7 +190,7 @@ class Home extends Component
                     {this.state.cardActiveStatus.education?
                       <Card 
                         name = 'Education'
-                        api = {'http://127.0.0.1:8000/api/info/education/' + urlUsername + '/'}
+                        api = {'/api/info/education/' + urlUsername + '/'}
                         urlUsername = { urlUsername } 
                         fieldInfo = { [
                           { nameOfField: 'course', 
@@ -235,7 +235,7 @@ class Home extends Component
                     {this.state.cardActiveStatus.skills?
                       <Card 
                         name = 'Skills'
-                        api = {'http://127.0.0.1:8000/api/info/skills/' + urlUsername + '/'}
+                        api = {'/api/info/skills/' + urlUsername + '/'}
                         urlUsername = { urlUsername } 
                         fieldInfo = { [
                           { nameOfField: 'skill', 
@@ -260,7 +260,7 @@ class Home extends Component
                     {this.state.cardActiveStatus.personalskills?
                       <Card 
                         name = 'Personal Skills'
-                        api = {'http://127.0.0.1:8000/api/info/personalskills/'+ urlUsername + '/'}
+                        api = {'/api/info/personalskills/'+ urlUsername + '/'}
                         urlUsername = { urlUsername } 
                         fieldInfo = { [
                           { nameOfField: 'skill', 
@@ -276,7 +276,7 @@ class Home extends Component
                     {this.state.cardActiveStatus.languagesknown?
                       <Card 
                         name = 'Languages Known'
-                        api = {'http://127.0.0.1:8000/api/info/languagesknown/' + urlUsername + '/'}
+                        api = {'/api/info/languagesknown/' + urlUsername + '/'}
                         urlUsername = { urlUsername } 
                         fieldInfo = { [
                           { nameOfField: 'language', 
@@ -310,7 +310,7 @@ class Home extends Component
                     {this.state.cardActiveStatus.interests?
                       <Card 
                         name = 'Interests'
-                        api = {'http://127.0.0.1:8000/api/info/interests/' + urlUsername + '/'}
+                        api = {'/api/info/interests/' + urlUsername + '/'}
                         urlUsername = { urlUsername } 
                         fieldInfo = { [
                           { nameOfField: 'interest', 
@@ -326,7 +326,7 @@ class Home extends Component
                     {this.state.cardActiveStatus.achievements?
                       <Card 
                         name = 'Achievements'
-                        api = {'http://127.0.0.1:8000/api/info/achievements/' + urlUsername + '/'}
+                        api = {'/api/info/achievements/' + urlUsername + '/'}
                         urlUsername = { urlUsername } 
                         fieldInfo = { [
                           { nameOfField: 'description', 

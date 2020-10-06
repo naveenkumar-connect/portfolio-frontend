@@ -83,7 +83,7 @@ class AboutMe extends Component {
 
     onSubmitHandler = (values) => {
 
-        axios.patch('http://127.0.0.1:8000/api/user/profile/'+ this.props.urlUsername + '/' + this.props.urlUsername + '/',  //need to be checked
+        axios.patch('/api/user/profile/'+ this.props.urlUsername + '/' + this.props.urlUsername + '/',  //need to be checked
             {
                 name: values.name,
                 //email: values.email,
@@ -103,7 +103,7 @@ class AboutMe extends Component {
                 console.log(err);
             });
 
-        axios.patch('http://127.0.0.1:8000/api/info/details/'+this.props.urlUsername + '/' + this.state.details.id +'/',
+        axios.patch('/api/info/details/'+this.props.urlUsername + '/' + this.state.details.id +'/',
             {   
                 profile: values.profile,
                 description: values.description,
@@ -132,7 +132,7 @@ class AboutMe extends Component {
     }   
     
     onPasswordSubmitHandler = ( values ) => {
-        axios.put('http://127.0.0.1:8000/api/user/passwordreset/',
+        axios.put('/api/user/passwordreset/',
             {   
                 username: this.props.urlUsername,
                 old_password: values.oldPassword,
@@ -158,13 +158,14 @@ class AboutMe extends Component {
     }
 
     getValues() {
-        axios.get('http://127.0.0.1:8000/api/user/profile/'+this.props.urlUsername, {
+        axios.get('/api/user/profile/'+this.props.urlUsername, {
                 headers: {
                 'Authorization' : `token ${this.props.token}`
                 }
             })
             .then(response => {
                 console.log('response in AboutMe');
+                
                 response.data.map( (user,index) => {
                     this.setState({ 
                         user: user
@@ -177,9 +178,10 @@ class AboutMe extends Component {
             }
             ); 
 
-        axios.get('http://127.0.0.1:8000/api/info/details/'+this.props.urlUsername)
+        axios.get('/api/info/details/'+this.props.urlUsername)
             .then(response => {
                 console.log('response2 in AboutMe');
+                console.log(response);
                 response.data.map( (detail,index) => {
                     console.log("detail");
                     console.log(detail.profilePic);

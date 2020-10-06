@@ -21,7 +21,7 @@ class Logout extends Component {
     }
 
     componentDidMount() {
-        axios.delete('http://127.0.0.1:8000/api/user/logout/'+this.props.authToken,{
+        axios.delete('/api/user/logout/'+this.props.authToken,{
                     headers: {
                     'Authorization' : `token ${this.props.authToken}`
                     }
