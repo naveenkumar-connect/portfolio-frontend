@@ -19,6 +19,7 @@ const toolbar = (props) => (
             <DrawerToggle clicked={props.drawerToggleClicked}/>
         </header>
         
+        
     </Aux>
 );
 

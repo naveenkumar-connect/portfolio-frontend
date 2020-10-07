@@ -222,6 +222,34 @@ class Card extends Component {
                                 <div key={index} className = 'InnerCard'>
                                     <div>
                                         {   allFieldValues.map((keyAndValue, index) => {
+                                                if(keyAndValue[0] === "date" || keyAndValue[0] === "startdate" || keyAndValue[0] === "lastdate") {
+                                                    var res = keyAndValue[1].split("-");
+                                                    var month;
+                                                    switch(parseInt(res[1])) {
+                                                        case 1: month="Jan"; break;
+                                                        case 2: month="Feb"; break;
+                                                        case 3: month="Mar"; break;
+                                                        case 4: month="Apr"; break;
+                                                        case 5: month="May"; break;
+                                                        case 6: month="Jun"; break;
+                                                        case 7: month="Jul"; break;
+                                                        case 8: month="Aug"; break;
+                                                        case 9: month="Sep"; break;
+                                                        case 10: month="Oct"; break;
+                                                        case 11: month="Nov"; break;
+                                                        case 12: month="Dec"; break;
+                                                    }
+                                                    keyAndValue[1] = res[2]+ ' ' + month + ' ' + res[0];
+                                                }
+                                                
+                                                if(keyAndValue[0] === "readlevel") {
+                                                    keyAndValue[1]= 'Read Level: '+keyAndValue[1]; 
+                                                }
+
+                                                if(keyAndValue[0] === "writelevel") {
+                                                    keyAndValue[1]= 'Write Level: '+keyAndValue[1];
+                                                }
+
                                                 switch(keyAndValue[0]) {
 
                                                     case 'institution':
@@ -245,7 +273,12 @@ class Card extends Component {
                                                     case 'city' : keyAndValueClass = "CardCity"; break;
                                                 }
                                                 return(
-                                                <div className={keyAndValueClass} key={index}>{keyAndValue[1]}</div>
+                                                <div 
+                                                    className={keyAndValueClass} 
+                                                    key={index}
+                                                >
+                                                    {keyAndValue[1]}
+                                                </div>
                                                 );
                                             })
                                         }

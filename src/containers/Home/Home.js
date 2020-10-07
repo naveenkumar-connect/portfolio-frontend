@@ -6,6 +6,7 @@ import Card from '../Card/Card';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import CardSelector from '../CardSelector/CardSelector';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 
 class Home extends Component
@@ -102,12 +103,17 @@ class Home extends Component
                   loggedInUser = { this.props.username }
                 /> 
 
+                <div className = "Disclaimer">
+                  The site is running under test purpose only. All the information and references are for dummy purpose only. 
+                </div>
+
                 {this.props.username == urlUsername ?
                   <div className = 'CardSelectorStrip' onClick = {this.toggleModalFlag}>
-                    + Select you Cards
+                    + Select your Cards
                   </div>
                   :null
                 }
+                
 
                 {this.state.modalFlag?
                   <CardSelector 

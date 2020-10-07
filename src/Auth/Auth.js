@@ -5,6 +5,7 @@ import { Redirect, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionTypes from '../Store/Action';
 import portfolio from '../Images/portfolio.png';
+import Spinner from '../components/UI/Spinner/Spinner';
 
 class Auth extends Component {
     
@@ -15,7 +16,8 @@ class Auth extends Component {
             returnSecureToken: true
         },
         errorCode: '',
-        err: ''
+        err: '',
+        loading: false
     }
   
     handleUserNameChange = (event) => {
@@ -37,8 +39,14 @@ class Auth extends Component {
     }
   
     login = () => {
+        this.setState({
+            loading: true
+        });
         axios.post('/api/user/login/', this.state.auth)
             .then(response => { 
+                this.setState({
+                    loading: false
+                });
                 if(response.data.status == 'success')
                 {  
                     this.props.onGetToken( {
@@ -69,12 +77,20 @@ class Auth extends Component {
                 console.log(response);
             })
             .catch(err =>{
+                this.setState({
+                    loading: false
+                });
                 console.log('err');
                 console.log(err.response);
             });
     }
 
     render() {
+        var titleOrLoading;
+        titleOrLoading = this.state.loading ? 
+                            <Spinner type = "login"/>
+                            :
+                            <h1 className="heading authFont">Please sign in</h1>;
 
         return(
             <div className='main'>
@@ -87,8 +103,7 @@ class Auth extends Component {
                         width="150"
                         
                     />
-                    <h1 className="heading authFont">Please sign in</h1>
-
+                    {titleOrLoading}
                     <label htmlFor="username" className="lab">User Name</label>
                     <input 
                         type="text" 

@@ -12,6 +12,7 @@ import phone16 from '../../Images/phone16.png';
 import email16 from '../../Images/email16.png';
 import linkedin16 from '../../Images/linkedin16.png';
 import github16 from '../../Images/github16.png';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class AboutMe extends Component {
     
@@ -254,6 +255,14 @@ class AboutMe extends Component {
         if (!this.props.isAuthenticated)
             className = className+" Displayy";
 
+        var value;
+        {
+            this.props.urlUsername != this.props.loggedInUser? 
+                 value = "block"
+             : 
+                 value = "none"
+        }
+
         return(
             <Aux>
                 { this.state.modifier ?
@@ -278,7 +287,12 @@ class AboutMe extends Component {
                         />
                         :null
                 }
+                
+
                 <div className = "Submenu">
+                    <div className = "VisitorProfile" style = {{display: value}}>
+                        Viewing this profile as a visitor
+                    </div>
                     <div className='ProfilePictureBox'>
                         <img 
                             src={this.state.details.profilePic} 
@@ -286,7 +300,10 @@ class AboutMe extends Component {
                             onClick = {this.profilePictureToggle}
                             style = { {cursor: "pointer"} }
                         />
-                        <div className="UserName">@{this.state.user.username}</div>
+                        {   this.state.user.username?
+                                <div className="UserName">@{this.state.user.username}</div>
+                                :null
+                        }
                         {
                             this.state.displayProfilePicture?
                                 <ProfilePicture

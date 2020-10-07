@@ -6,6 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../Store/Action';
 import portfolio from '../../Images/portfolio.png';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class SignUp extends Component {
 
@@ -13,10 +14,14 @@ class SignUp extends Component {
         redirectToLogin: false,
         redirectToHome: false,
         errCode: '',
-        err: ''
+        err: '',
+        loading: false
     }
 
     onSubmitHandler = (values) => {
+        this.setState({
+            loading: true
+        });
         console.log(values);
         axios.post('/api/user/profile/',
             {
@@ -26,6 +31,9 @@ class SignUp extends Component {
                 password: values.password
             })
             .then(response => {
+                this.setState({
+                    loading: false
+                });
                 console.log('profile created');
                 console.log(response);
                 if(response.data.status == 'profileCreated')
@@ -60,6 +68,9 @@ class SignUp extends Component {
                 }
             })
             .catch(err =>{
+                this.setState({
+                    loading: true
+                });
                 console.log(err);
             });
     }
@@ -145,13 +156,16 @@ class SignUp extends Component {
                     />
                 </div>
 
-                {this.state.errorCode == 'improperUsernameAndEmail'?
-                    <div className = "SignUpErrorDisplay">
-                        {this.state.err.username ? <div> Username is already taken </div> :null}
-                        
-                        {this.state.err.email ? <div> Email already exists </div> :null}
-                    </div>
-                    :null
+                {   this.state.loading ?
+                        <Spinner type="login" />
+                    :
+                    this.state.errorCode == 'improperUsernameAndEmail'?
+                        <div className = "SignUpErrorDisplay">
+                            {'username: '+this.state.err.username}
+                            
+                            {this.state.err.email ? <div> Email already exists </div> :null}
+                        </div>
+                        :null
                 }
 
                 <Form 

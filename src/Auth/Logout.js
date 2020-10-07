@@ -3,24 +3,36 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionTypes from '../Store/Action';
+import Spinner from '../components/UI/Spinner/Spinner';
 
 class Logout extends Component {
+
+    state = {
+        logoutDone: false,
+        loading: false
+    }
 
     render() {
         
         return(
             <div>
-                {   this.props.isAuthenticated ?
-                        null
-                        :
+                {   this.state.loading ?
+                        <Spinner type = "logout" />
+                    :null
+                }
+                {   this.state.logoutDone?
                         <Redirect to='/login' />
+                    :null
                 }
                 
             </div>
         );
     }
 
-    componentDidMount() {
+     componentDidMount() {
+        this.setState({
+            loading: true
+        });
         axios.delete('/api/user/logout/'+this.props.authToken,{
                     headers: {
                     'Authorization' : `token ${this.props.authToken}`
@@ -28,6 +40,10 @@ class Logout extends Component {
                 })
                 .then(response => {
                     this.props.onLogout();
+                    this.setState({
+                        loading: false,
+                        logoutDone: true
+                    });
                 })
                 .catch(err =>{
                     console.log(err);

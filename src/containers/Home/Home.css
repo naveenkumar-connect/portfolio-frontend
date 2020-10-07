@@ -48,3 +48,11 @@
     padding: 2px 0px;
     cursor: pointer;
 }
+
+.Disclaimer {
+    background-color: red;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+}
