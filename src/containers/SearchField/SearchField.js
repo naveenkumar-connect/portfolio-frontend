@@ -16,6 +16,7 @@ class SearchField extends Component {
         currentPage: 1,
         modalFlag: false,
         searchUser: '',
+        searchFieldValue: '',
         userDetail: {
             username:{
                 profilePic: '',
@@ -98,7 +99,7 @@ class SearchField extends Component {
                 });
                 console.log("in getDetails");
                 console.log(this.state.userDetail);
-                console.log(response.data);
+                console.log(response);
                 console.log(user);
             })
             .catch(err =>{
@@ -140,11 +141,12 @@ class SearchField extends Component {
                                     key={index} 
                                     className = 'Tiles' 
                                     onClick = {() => {
-                                        
+                                        console.log("search result clicked + "+field.username);
                                         if(this.props.closeSideDrawer)
                                             this.props.closeSideDrawer();
                                         this.toggleModalFlag();
                                         this.setState({
+                                            searchFieldValue: "",
                                             searchUser: field.username
                                         });
                                     }} 

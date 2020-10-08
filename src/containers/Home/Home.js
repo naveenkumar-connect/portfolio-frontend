@@ -6,6 +6,7 @@ import Card from '../Card/Card';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import CardSelector from '../CardSelector/CardSelector';
+import { Redirect } from 'react-router-dom';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 
@@ -30,7 +31,8 @@ class Home extends Component
         interests: false,
         achievements: false
       },
-      modalFlag: false
+      modalFlag: false,
+      checkedUserExistence: false
     }
 
     toggleModalFlag = () => { 
@@ -49,10 +51,12 @@ class Home extends Component
               console.log('response in AboutMe');
               response.data.map( (user,index) => {
                   this.setState({ 
-                      user: user
+                      user: user,
                   });
               });
-              
+              this.setState({ 
+                checkedUserExistence: true
+              });
           })
           .catch(err =>{
               console.log(err);
@@ -96,8 +100,14 @@ class Home extends Component
 
     render(){
       let urlUsername = this.props.match.params.urlUsername;
+      console.log("In Home");
+      console.log(urlUsername);
       return(
          <Aux> 
+                {   this.state.checkedUserExistence && !this.state.user.name ?
+                      <Redirect to='/404PageNotFound' />
+                    :null
+                }
                 <AboutMe 
                   urlUsername = { urlUsername }
                   loggedInUser = { this.props.username }
@@ -252,6 +262,7 @@ class Home extends Component
                           },
                           { nameOfField: 'level', 
                             elementType: 'select', 
+                            placeholder: 'Level',
                             options: [
                               {value: 'Beginner', displayValue: 'Beginner'},
                               {value: 'Intermediate', displayValue: 'Intermediate'},
@@ -293,6 +304,7 @@ class Home extends Component
                           },
                           { nameOfField: 'readlevel', 
                             elementType: 'select', 
+                            placeholder: 'Read Level',
                             options: [
                               {value: 'Beginner', displayValue: 'Beginner'},
                               {value: 'Intermediate', displayValue: 'Intermediate'},
@@ -302,6 +314,7 @@ class Home extends Component
                           },
                           { nameOfField: 'writelevel', 
                             elementType: 'select', 
+                            placeholder: 'Write Level',
                             options: [
                               {value: 'Beginner', displayValue: 'Beginner'},
                               {value: 'Intermediate', displayValue: 'Intermediate'},

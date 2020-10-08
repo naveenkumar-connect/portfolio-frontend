@@ -66,86 +66,86 @@ class CardSelector extends Component {
                     <form onSubmit = {this.onSubmitHandler} className = "CardSelectorForm">
                         <div className = "FormBox1">
                             <div className = "CardSelectedPair">
-                                <label className = 'CardSelecterLabel' >Experience</label>
                                 <input 
                                     type = "checkbox" 
                                     className = 'CardSelecterCheckBox'
                                     checked = {this.state.cardActiveStatus.experience} 
                                     onChange = {(event) => {this.onChangeHandler(event,'experience')}}
                                 />
+                                <label className = 'CardSelecterLabel' >Experience</label>
                             </div>
 
                             <div className = "CardSelectedPair">
-                                <label className = 'CardSelecterLabel' >Projects</label>
                                 <input 
                                     type = "checkbox" 
                                     className = 'CardSelecterCheckBox'
                                     checked = {this.state.cardActiveStatus.projects} 
                                     onChange = {(event) => {this.onChangeHandler(event,'projects')}}
                                 />
+                                <label className = 'CardSelecterLabel' >Projects</label>
                             </div>
                             
                             <div className = "CardSelectedPair">
-                                <label className = 'CardSelecterLabel' >Education</label>
                                 <input 
                                     type = "checkbox" 
                                     className = 'CardSelecterCheckBox'
                                     checked = {this.state.cardActiveStatus.education} 
                                     onChange = {(event) => {this.onChangeHandler(event,'education')}}
                                 />
+                                <label className = 'CardSelecterLabel' >Education</label>
                             </div>
                         </div>
 
                         <div className = "FormBox2">
 
                             <div className = "CardSelectedPair">
-                                <label className = 'CardSelecterLabel' >Skills</label>
                                 <input 
                                     type = "checkbox" 
                                     className = 'CardSelecterCheckBox'
                                     checked = {this.state.cardActiveStatus.skills} 
                                     onChange = {(event) => {this.onChangeHandler(event,'skills')}}
                                 />
+                                <label className = 'CardSelecterLabel' >Skills</label>
                             </div>
 
                             <div className = "CardSelectedPair">
-                                <label className = 'CardSelecterLabel' >Personal Skills</label>
                                 <input 
                                     type = "checkbox" 
                                     className = 'CardSelecterCheckBox'
                                     checked = {this.state.cardActiveStatus.personalskills} 
                                     onChange = {(event) => {this.onChangeHandler(event,'personalskills')}}
                                 />
+                                <label className = 'CardSelecterLabel' >Personal Skills</label>
                             </div>
 
                             <div className = "CardSelectedPair">
-                                <label className = 'CardSelecterLabel' >Languages Known</label>
                                 <input 
                                     type = "checkbox" 
                                     className = 'CardSelecterCheckBox'
                                     checked = {this.state.cardActiveStatus.languagesknown} 
                                     onChange = {(event) => {this.onChangeHandler(event,'languagesknown')}}
                                 />
+                                <label className = 'CardSelecterLabel' >Languages Known</label>
                             </div>
 
                             <div className = "CardSelectedPair">
-                                <label className = 'CardSelecterLabel' >Interests</label>
                                 <input 
                                     type = "checkbox" 
                                     className = 'CardSelecterCheckBox'
                                     checked = {this.state.cardActiveStatus.interests} 
                                     onChange = {(event) => {this.onChangeHandler(event,'interests')}}
                                 />
+                                <label className = 'CardSelecterLabel' >Interests</label>
                             </div>
 
                             <div className = "CardSelectedPair">
-                                <label className = 'CardSelecterLabel' >Achievements</label>
                                 <input 
                                     type = "checkbox" 
                                     className = 'CardSelecterCheckBox' 
                                     checked = {this.state.cardActiveStatus.achievements} 
                                     onChange = {(event) => {this.onChangeHandler(event,'achievements')}}
                                 />
+                                <label className = 'CardSelecterLabel' >Achievements</label>
                             </div>
                         </div>
                         <div className = "CardSelectorButtonGroup">

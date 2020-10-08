@@ -36,10 +36,11 @@ class Card extends Component {
         config[nameOfField]['validation'] = validation;
     }
 
-    selectFormField = (config, nameOfField, elementType, options, value, validation) => {
+    selectFormField = (config, nameOfField, elementType, placeholder, options, value, validation) => {
         config[nameOfField] = {};
         config[nameOfField]['elementType'] = elementType;
         config[nameOfField]['elementConfig'] = {};
+        config[nameOfField]['elementConfig']['placeholder'] = placeholder;
         config[nameOfField]['elementConfig']['options'] = options;
         config[nameOfField]['value'] = value;
         config[nameOfField]['validation'] = validation;
@@ -51,7 +52,7 @@ class Card extends Component {
             if(field.elementType == 'input')
                 this.inputFormField(config, field.nameOfField, field.elementType, field.type, field.placeholder , this.state.fields[index][field.nameOfField], field.validation);
             else if(field.elementType == 'select')
-                this.selectFormField(config, field.nameOfField, field.elementType, field.options, this.state.fields[index][field.nameOfField], field.validation);
+                this.selectFormField(config, field.nameOfField, field.elementType, field.placeholder ,field.options, this.state.fields[index][field.nameOfField], field.validation);
         } ); 
         return config;
     }
@@ -62,7 +63,7 @@ class Card extends Component {
             if(field.elementType == 'input')
                 this.inputFormField(config, field.nameOfField, field.elementType, field.type, field.placeholder , '', field.validation);
             else if(field.elementType == 'select')
-                this.selectFormField(config, field.nameOfField, field.elementType, field.options, field.options[0]['value'], field.validation);
+                this.selectFormField(config, field.nameOfField, field.elementType, field.placeholder ,field.options, field.options[0]['value'], field.validation);
         } ); 
         return config;
     }

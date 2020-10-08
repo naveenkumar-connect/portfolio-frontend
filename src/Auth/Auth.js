@@ -38,7 +38,8 @@ class Auth extends Component {
         });
     }
   
-    login = () => {
+    login = (event) => {
+        event.preventDefault();
         this.setState({
             loading: true
         });
@@ -94,7 +95,7 @@ class Auth extends Component {
 
         return(
             <div className='main'>
-                <form className="text-center SignInForm" >
+                <form className="text-center SignInForm" onSubmit = {this.login}>
                     <img 
                         className="" 
                         src={portfolio}
@@ -143,7 +144,7 @@ class Auth extends Component {
                         :null
                     }
                     
-                    <button className="btn authFont" type="button" onClick = {this.login}
+                    <button className="btn authFont" type="submit"
                     >
                         Sign in
                     </button>
