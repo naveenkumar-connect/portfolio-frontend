@@ -82,6 +82,7 @@
     padding: 5px 10%;
     width: 50%;
     vertical-align: bottom;
+    display: flex;
     
 }
 
@@ -155,7 +156,6 @@
     border-color: white;
     margin:0;
     padding: 3px;
-    float: left;
     
 }
 
@@ -165,7 +165,7 @@
     border-width: 0px;
     border-color: yellow;
     padding-left: 10px;
-    float: left;
+    
 }
 
 @media(max-width:650px) {
@@ -227,4 +227,78 @@
 
 .SubmenuChangePassword:hover {
     background-image: url('../../Images/lockhover16.png'); 
+}
+
+.SubmenuDeleteProfile {
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    background-image: url('../../Images/submenudelete16.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    margin: 1px; 
+}
+
+.SubmenuDeleteProfile:hover {
+    background-image: url('../../Images/submenudeletehover16.png'); 
+}
+
+.DeletePromptTitle {
+    color: red;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.DeletePromptDescription {
+    color: #007bff;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.DeletePromptButtonGroup {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.DeletePromptButton {
+    padding: 5px 25px;
+    transition: all 0.4s ease 0s;
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+    border-radius: 3px;
+    color: white;
+    margin:10px;
+}
+
+.DeletePromptButton:hover {
+    transition: all 0.4s ease 0s;
+}
+
+.DeletePromptBlueButton {
+    background-color: #277e93;
+}
+
+.DeletePromptBlueButton:hover {
+    background-color: #006c80;
+}
+
+.DeletePromptBlueButton:focus {
+    background-color: #005a6e;
+}
+
+.DeletePromptRedButton {
+    background-color: #e72c29;
+}
+
+.DeletePromptRedButton:hover {
+    background-color: #ce0018;
+}
+
+.DeletePromptRedButton:focus {
+    background-color: #b60006;
 }

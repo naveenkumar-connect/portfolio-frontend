@@ -15,8 +15,8 @@ class SearchField extends Component {
         noOfPages: 0,
         currentPage: 1,
         modalFlag: false,
-        searchUser: '',
         searchFieldValue: '',
+        searchUser: '',
         userDetail: {
             username:{
                 profilePic: '',
@@ -24,6 +24,8 @@ class SearchField extends Component {
             }
         }
     }
+
+    savedState = this.state;
 
     toggleModalFlag = () => { 
         this.setState ({ 
@@ -41,6 +43,9 @@ class SearchField extends Component {
 
     onSubmitHandler = (event) => {
         event.preventDefault();
+        this.setState({
+            searchUser: ""
+        });
         this.toggleModalFlag();
         this.getValue('/api/user/searchprofile/?search=' + this.state.searchFieldValue + '&page=1');
     }
@@ -109,7 +114,7 @@ class SearchField extends Component {
     }
 
     render() {
-        
+
         return(
             <div>
                 <form onSubmit = {this.onSubmitHandler} action="#">
@@ -141,7 +146,7 @@ class SearchField extends Component {
                                     key={index} 
                                     className = 'Tiles' 
                                     onClick = {() => {
-                                        console.log("search result clicked + "+field.username);
+                                        console.log("search result clicked + " + field.username);
                                         if(this.props.closeSideDrawer)
                                             this.props.closeSideDrawer();
                                         this.toggleModalFlag();
@@ -149,6 +154,8 @@ class SearchField extends Component {
                                             searchFieldValue: "",
                                             searchUser: field.username
                                         });
+                                        console.log("this.props.searchFieldUser");
+                                        console.log(this.props.searchFieldUser);
                                     }} 
                                 >
                                     <div className = "SearchImage">
@@ -202,7 +209,7 @@ class SearchField extends Component {
                 
                 </Modal>
                 {
-                    this.state.searchUser?
+                    this.state.searchUser? 
                         <Redirect to={'/' + this.state.searchUser + "/proxyhome"} />
                         :null
                 }

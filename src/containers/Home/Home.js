@@ -8,6 +8,7 @@ import axios from 'axios';
 import CardSelector from '../CardSelector/CardSelector';
 import { Redirect } from 'react-router-dom';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import * as actionTypes from '../../Store/Action';
 
 
 class Home extends Component
@@ -99,9 +100,13 @@ class Home extends Component
     }
 
     render(){
+      
+
       let urlUsername = this.props.match.params.urlUsername;
       console.log("In Home");
+      console.log(this.props.searchFieldUser);
       console.log(urlUsername);
+
       return(
          <Aux> 
                 {   this.state.checkedUserExistence && !this.state.user.name ?
@@ -169,7 +174,10 @@ class Home extends Component
                             elementType: 'input', 
                             type: 'date', 
                             placeholder: 'Last Date', 
-                            validation: {required: true} 
+                            validation: {
+                              required: true,
+                              shouldBeGreaterThanOrEqualTo: "startdate"
+                            } 
                           },
                           { nameOfField: 'city', 
                             elementType: 'input', 
@@ -231,7 +239,10 @@ class Home extends Component
                             elementType: 'input', 
                             type: 'date', 
                             placeholder: 'Last Date', 
-                            validation: {required: true} 
+                            validation: {
+                              required: true,
+                              shouldBeGreaterThanOrEqualTo: "startdate"
+                            } 
                           },
                           { nameOfField: 'city', 
                             elementType: 'input', 

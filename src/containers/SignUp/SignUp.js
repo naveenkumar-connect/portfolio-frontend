@@ -93,6 +93,8 @@ class SignUp extends Component {
                 value: "",
                 validation: {
                     required: true,
+                    usernameUniqueInDatabase: true,
+                    databaseAPI: '/api/user/usernamecheck/'
                 },
             },
             name: {
@@ -115,6 +117,8 @@ class SignUp extends Component {
                 value: "",
                 validation: {
                     required: true,
+                    emailUniqueInDatabase: true,
+                    databaseAPI: '/api/user/emailcheck/'
                 },
             },
             password: {

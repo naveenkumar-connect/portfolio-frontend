@@ -92,3 +92,17 @@
 .CancelButtonLook:focus {
     background-color: #b60006;
 }
+
+
+.Wait {
+    display: none;
+}
+
+.NotAvailable {
+    color: red;
+    text-align: center;
+}
+
+.Available {
+    display: none;
+}

@@ -4,7 +4,10 @@ import './AboutMe.css';
 import axios from 'axios';
 import Modifier from '../Modifier/Modifier';
 import { connect } from 'react-redux';
+import * as actionTypes from '../../Store/Action';
 import ProfilePicture from './ProfilePicture/ProfilePicture';
+import Modal from '../../components/UI/Modal/Modal';
+import { Redirect } from 'react-router-dom';
 
 import defaultProfilePicture from '../../Images/defaultProfilePicture.png';
 import placeholder16 from '../../Images/placeholder16.png';
@@ -12,7 +15,6 @@ import phone16 from '../../Images/phone16.png';
 import email16 from '../../Images/email16.png';
 import linkedin16 from '../../Images/linkedin16.png';
 import github16 from '../../Images/github16.png';
-import Spinner from '../../components/UI/Spinner/Spinner';
 
 class AboutMe extends Component {
     
@@ -29,7 +31,9 @@ class AboutMe extends Component {
         modifier: false,
         passwordModifier: false,
         oldPasswordWrongError: false,
-        displayProfilePicture: false
+        displayProfilePicture: false,
+        deleteFlag: false,
+        deletionDone: false
 
     }
 
@@ -211,6 +215,29 @@ class AboutMe extends Component {
         this.getValues();
     }
 
+    deleteProfile = () => {
+        axios.delete('/api/user/profile/' + this.props.loggedInUser + '/' + this.props.loggedInUser + '/',
+            {
+                headers: {
+                    'Authorization' : `token ${this.props.authToken}`
+                }
+            })
+            .then(response => {
+                this.props.onLogout();
+                this.setState({
+                    deletionDone: true,
+                    deleteFlag: false
+                });
+            })
+            .catch(err =>{
+                console.log(err);
+                this.setState({
+                    loading: false
+                });
+            }
+        );
+    }
+
     render(){
         const passwordMap = {
             oldPassword: {
@@ -287,7 +314,36 @@ class AboutMe extends Component {
                         />
                         :null
                 }
-                
+
+                <Modal flag={this.state.deleteFlag} toggleDeleteState = {() =>{this.setState({deleteFlag: !this.state.deleteFlag})}}>
+                    <div className = "DeletePromptTitle">
+                        Confirm Delete ?
+                    </div>
+                    <div className = "DeletePromptDescription">
+                        Pressing the below <b>Confirm Delete</b> button will delete all your records and will not be recoverable.
+                        Kindly confirm if you still want to proceed with the deletion.
+                    </div>
+
+                    <div className = "DeletePromptButtonGroup">
+                        <button 
+                            onClick = {this.deleteProfile}
+                            className="DeletePromptButton DeletePromptRedButton"
+                        >
+                            Confirm Delete
+                        </button>
+                                
+                        <button 
+                                onClick = {() =>{this.setState({deleteFlag: !this.state.deleteFlag})}}
+                                className="DeletePromptButton DeletePromptBlueButton"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </Modal>
+                {   this.state.deletionDone?
+                        <Redirect to='/login' />
+                    :null
+                }
 
                 <div className = "Submenu">
                     <div className = "VisitorProfile" style = {{display: value}}>
@@ -340,6 +396,15 @@ class AboutMe extends Component {
                         
                         {this.props.urlUsername == this.props.loggedInUser?
                             <button 
+                                className = {className + ' SubmenuDeleteProfile'}
+                                onClick = {() =>{this.setState({deleteFlag: !this.state.deleteFlag})}}
+                            >
+                            
+                            </button>
+                            :null
+                        } 
+                        {this.props.urlUsername == this.props.loggedInUser?
+                            <button 
                                 className = {className + ' SubmenuEditButton'}
                                 onClick = { () => this.setModifier(true) }
                             >   
@@ -354,6 +419,8 @@ class AboutMe extends Component {
                             </button> 
                             :null
                         }
+                          
+                        
                         
                     </div>
                 </div>
@@ -424,4 +491,10 @@ const mapStateToProps = state => {
     };
 }
 
-export default connect(mapStateToProps)(AboutMe);
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogout: () => dispatch( { type: actionTypes.LOGOUT } )
+    };
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )(AboutMe);

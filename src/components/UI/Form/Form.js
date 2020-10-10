@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from './Input/Input';
 import './Form.css';
+import axios from 'axios';
 
 class Form extends Component {
     /*  Form elements are required in the following form
@@ -42,7 +43,9 @@ class Form extends Component {
             
         },
         formIsValid: false,
-        loading: false
+        loading: false,
+        usernameAvailabilityStatus: 'Wait',
+        emailAvailabilityStatus: 'Wait'
     }
 
     checkValidity(value, rules, touched) {
@@ -78,6 +81,59 @@ class Form extends Component {
                 errorMessage = 'Passwords do not match';
         }
 
+        if(rules.shouldBeGreaterThanOrEqualTo) {
+            check = new Date(value) >= new Date(this.state.authForm[rules.shouldBeGreaterThanOrEqualTo].value);
+            isValid = check && isValid;
+            if(!check)
+                errorMessage = 'Last date cannot be before the start date';
+        }
+
+        if(rules.usernameUniqueInDatabase) {
+            this.setState ({
+                usernameAvailabilityStatus: "Wait"
+            });
+            axios.get(rules.databaseAPI + value + '/')
+            .then(response => { 
+                if (response.data.length === 1) {
+                    this.setState({
+                        usernameAvailabilityStatus: "NotAvailable"
+                    });
+                }
+                else {
+                    this.setState({
+                        usernameAvailabilityStatus: "Available"
+                    });
+                }
+            })
+            .catch(err =>{
+                console.log('err');
+                console.log(err.response);
+            });
+        }
+
+        if(rules.emailUniqueInDatabase) {
+            this.setState ({
+                emailAvailabilityStatus: "Wait"
+            });
+            axios.get(rules.databaseAPI + value + '/')
+            .then(response => { 
+                if (response.data.length === 1) {
+                    this.setState({
+                        emailAvailabilityStatus: "NotAvailable"
+                    });
+                }
+                else {
+                    this.setState({
+                        emailAvailabilityStatus: "Available"
+                    });
+                }
+            })
+            .catch(err =>{
+                console.log('err');
+                console.log(err.response);
+            });
+        }
+
         return {
             isValid: isValid,
             errorMessage: errorMessage 
@@ -108,7 +164,6 @@ class Form extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        console.log("Check Submit");
         this.setState( {loading: true} );
         const formData = {};
         for(let formElementIdentifier in this.state.authForm) {
@@ -154,6 +209,15 @@ class Form extends Component {
         return(
             <div className = 'Border'>
                 <div className = "ModifierTitle" >{this.props.title}</div>
+
+                    <div className = {this.state.usernameAvailabilityStatus}>
+                        Username is not available!
+                    </div>
+
+                    <div className = {this.state.emailAvailabilityStatus}>
+                        Email is already used!
+                    </div>
+
                     <form className = "Form" onSubmit = { this.submitHandler } >
                         {formElementsArray.map(formElement => (
                             <Input 
@@ -169,10 +233,17 @@ class Form extends Component {
                             />
                         ))}
 
+
                         <div className="FormButtons">
                             <button 
                                 type = 'submit' 
-                                disabled = {!this.state.formIsValid}
+                                disabled = {
+                                    !this.state.formIsValid 
+                                    ||  this.state.usernameAvailabilityStatus === 'Wait' 
+                                    || this.state.usernameAvailabilityStatus === 'NotAvailable' 
+                                    ||  this.state.emailAvailabilityStatus === 'Wait' 
+                                    || this.state.emailAvailabilityStatus === 'NotAvailable' 
+                                }
                                 className="SubmitButton ButtonLook SubmitButtonLook"
                             >
                                 Submit
@@ -186,7 +257,6 @@ class Form extends Component {
                         </div>
 
                     </form>
-                    {console.log(this.state)}
             </div>
         );
     }
