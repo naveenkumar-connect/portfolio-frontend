@@ -44,8 +44,8 @@ class Form extends Component {
         },
         formIsValid: false,
         loading: false,
-        usernameAvailabilityStatus: 'Wait',
-        emailAvailabilityStatus: 'Wait'
+        usernameAvailabilityStatus: 'Available',
+        emailAvailabilityStatus: 'Available'
     }
 
     checkValidity(value, rules, touched) {
