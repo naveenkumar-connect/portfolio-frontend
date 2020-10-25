@@ -1,3 +1,5 @@
+/* Displays individual navigation item */
+
 import React from 'react';
 import './SingleNavigationItem.css';
 import { NavLink } from 'react-router-dom';

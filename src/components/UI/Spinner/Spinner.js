@@ -1,7 +1,7 @@
+/* Displays Spinner when requested*/
+
 import React from 'react';
 import './Spinner.css';
-import Modal from '../../UI/Modal/Modal';
-import Backdrop from '../Backdrop/Backdrop';
 
 const spinner = (props) => {
 

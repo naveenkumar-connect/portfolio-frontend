@@ -1,3 +1,5 @@
+/* Implements card selection feature on the home page */
+
 import React, {Component} from 'react';
 import axios from 'axios';
 import './CardSelector.css';
@@ -6,9 +8,9 @@ import Modal from '../../components/UI/Modal/Modal';
 class CardSelector extends Component {
 
     state = {
-        modalFlag: false,
-        cardActiveStatus: {
-            id: this.props.inheritId,
+        modalFlag: false,   //required to manage card selector dialogue box, lauches dialogue box when true, dispose dialogue box when false
+        cardActiveStatus: {     //hold status of all the cards
+            id: this.props.inheritId, //row id in the database
             experience: this.props.states.experience,
             projects: this.props.states.projects,
             education: this.props.states.education,
@@ -21,31 +23,45 @@ class CardSelector extends Component {
     }
 
     toggleModalFlag = () => { 
+        /* toggles state of modalFlag to open and close <CardSelector> */
+
         this.setState ({ 
           modalFlag: !this.state.modalFlag
         }); 
     }
 
     onSubmitHandler = (event) => {
+        /* Executes when user hits the submit button */
+
+        //prevents reloading of the page when user submits the form
         event.preventDefault();
+
+        //API stores updated card status in the databases
         axios.patch('/api/info/cards/'+this.props.inheritUrlUsername+'/'+this.props.inheritId+'/', 
             this.state.cardActiveStatus)
             .then(response => {
-                console.log("Card Selector worked");
+                //when API works successfuly
+                
+                //updated value of the card status given back to parent component to rerender the cards
                 this.props.cardStateHandler(this.state.cardActiveStatus);
+
+                //toggles ModalFlag to close the <CardSelector>
                 this.props.toggleModalFlag();
             })
             .catch(err =>{
-                console.log(err);
+                //executes when API fails
             });
         
     }
 
     onChangeHandler = (event, card) => {
-        console.log("card selector");
-        console.log(event.target.checked);
+        //executes when value of checkbox of a particular card changes
+
+        // object stores value of card whose value is just changed
         var tempCard = {};
         tempCard[card] = event.target.checked;
+
+        // updates state as per the new values of card check boxes
         this.setState({
             cardActiveStatus: {
                 ...this.state.cardActiveStatus,
@@ -58,11 +74,16 @@ class CardSelector extends Component {
         console.log("In Card Selector render()");
         return (
             <div>
-                
+                /* Modal creates dialogue box for profile picture updation
+                    props sent to component -
+                    flag: Equals to prop's modalFlag. Launches and disposes Modal with true and false value respectively
+                    toggleState: Disposes Modal by setting props.Flag to false
+                */
                 <Modal flag={this.props.modalFlag} toggleState={this.props.toggleModalFlag}>   
                     <div className = "CardSelectorTitle">
                         Select your Cards
                     </div>
+
                     <form onSubmit = {this.onSubmitHandler} className = "CardSelectorForm">
                         <div className = "FormBox1">
                             <div className = "CardSelectedPair">

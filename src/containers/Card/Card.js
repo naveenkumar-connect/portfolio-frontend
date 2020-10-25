@@ -1,4 +1,6 @@
 /*
+Display cards such as Experience, education etc on the home page.
+
 props required:
 
 name: name of the card
@@ -18,15 +20,17 @@ import './Card.css';
 class Card extends Component {
     
     state = {
-        fields: [],
-        modifier: null,
-        editReq: {
-            id: '',
-            index: ''
+        fields: [],         // will be needed to store list of objects from API response
+        modifier: null,     // sets the purpose the modifier is required for (add, edit or delete)
+        editReq: {          // keep track of the entry to be edited or deleted by this card
+            id: '',         // row id of the entry in the database
+            index: ''       // index of the entry in state's fields
         }
     }
 
     inputFormField = (config, nameOfField, elementType, type, placeholder, value, validation) => {
+        //saves repetition code for <input> in editMap and addMap
+
         config[nameOfField] = {};
         config[nameOfField]['elementType'] = elementType;
         config[nameOfField]['elementConfig'] = {};
@@ -37,6 +41,8 @@ class Card extends Component {
     }
 
     selectFormField = (config, nameOfField, elementType, placeholder, options, value, validation) => {
+        //saves repetition code for <select> in editMap and addMap
+
         config[nameOfField] = {};
         config[nameOfField]['elementType'] = elementType;
         config[nameOfField]['elementConfig'] = {};
@@ -47,6 +53,10 @@ class Card extends Component {
     } 
 
     editMap = (id, index) => {
+        /*  Creates validation object for the form for editing in required format from the raw data 
+            received from parent component.
+        */
+
         const config = {};
         this.props.fieldInfo.map( (field) => {
             if(field.elementType == 'input')
@@ -58,6 +68,10 @@ class Card extends Component {
     }
 
     addMap = () => {
+        /*  Creates validation object for the form for addition in required format from the raw data 
+            received from parent component.
+        */
+
         const config = {};
         this.props.fieldInfo.map( (field) => {
             if(field.elementType == 'input')
@@ -69,6 +83,10 @@ class Card extends Component {
     }
 
     setModifier = (action, id, index) => {
+        /*  sets action to be taken by the modifier in the lcal state, if editing or addition is to be done then 
+            editReq.id and editReq.index are also set in state to perform editing or addition to the database 
+        */
+
         this.setState({
             modifier: action
         });
@@ -76,16 +94,21 @@ class Card extends Component {
         if(id) {
             this.setState({
                 editReq: {
-                     id: id,
-                    index: index
+                     id: id,        // id is the row id in the database for the concerned entry
+                    index: index    // index is the index of the entry in state's field
                 }
             });
         }
     }
 
     onSubmitHandler = (values) => {
-        console.log(values);
+        //perform updation on the database over APIs with the "values" given to onSubmitHandler
+
         switch(this.state.modifier){
+            
+            /*  performs addition of new entry over the api provided by props.api with "values" provided 
+                to onSubmitHandler
+            */
             case 'add': axios.post(this.props.api,
                         {
                             ...values,
@@ -98,15 +121,19 @@ class Card extends Component {
                             }
                         })
                         .then(response => {
-                            console.log('add');
-                            console.log(response);
-                            this.setModifier(null);
-                            this.getValues();
+                            //executes when addition was successful at the backend
+
+                            this.setModifier(null); //clearing modifier actions to avoid interruption with next actions
+                            this.getValues();       //reloads card data from the api and rerenders the UI
                         })
                         .catch(err =>{
-                            console.log(err);
+                            //executes when addition at the backend fails
                         });
                         break;
+
+            /*  performs updation of an existing entry over the api provided by props.api with "values" provided 
+                to onSubmitHandler
+            */
             case 'edit':    axios.patch(this.props.api+this.state.editReq.id+'/',
                             {
                                 ...values,
@@ -119,15 +146,16 @@ class Card extends Component {
                                 }
                             })
                             .then(response => {
-                                console.log('edit');
-                                console.log(response);
-                                this.setModifier(null);
-                                this.getValues();
+                                this.setModifier(null); //clearing modifier actions to avoid interruption with next actions
+                                this.getValues();       //reloads card data from the api and rerenders the UI
                             })
                             .catch(err =>{
-                                console.log(err);
+                                //executes when updation at the backend fails
                             });
                             break;
+
+            /*  performs deletion of an existing entry over the api provided by props.api 
+            */
             case 'delete':  axios.delete(this.props.api+this.state.editReq.id+'/',
                             {
                                 headers: {
@@ -135,13 +163,11 @@ class Card extends Component {
                                 }
                             })
                             .then(response => {
-                                console.log('delete');
-                                console.log(response);
-                                this.setModifier(null);
-                                this.getValues();
+                                this.setModifier(null); //clearing modifier actions to avoid interruption with next actions
+                                this.getValues();       //reloads card data from the api and rerenders the UI
                             })
                             .catch(err =>{
-                                console.log(err);
+                                //executes when deletion at the backend fails
                             });
            
         }
@@ -149,26 +175,34 @@ class Card extends Component {
     }
 
     getValues() {
+        //performs reading values over the API and update them to state
+
         axios.get(this.props.api)
         .then(response => {
-            console.log('response.data');
-            console.log(response.data);
             this.setState({ 
                 fields: response.data
             });
         })
         .catch(err =>{
-            console.log(err);
+            //executes when updation over API fails
         });
     }
 
     componentDidMount() {
+        //Reads value for the first time over api and renders the UI
         this.getValues();
     }
 
 
     
     render(){
+
+        /*  map stores validation object for the form 
+            title stores title for the Card
+            formIsValid stores whether the edit/add form should be initially valid or not 
+            (ie. for addition it should be initially invalid or submit button should be greyed out
+             and for editing it should be initially valid or submit button should be enabled.)
+        */
         let map, title, formIsValid;
         if(this.state.modifier == 'add'){
             map = this.addMap();
@@ -190,8 +224,17 @@ class Card extends Component {
                 <div className='OuterCard'>
                     <div className="CardName">
                         {this.props.name}
-                        { this.state.modifier !== null
+                        { //executes when user user click any of add, edit and delete button 
+                          this.state.modifier !== null
                             ?
+                            /*  <Modifier> executes profile settings dialogue box here
+                                props sent to component - 
+                                title: Title of the profile setting dialogue box 
+                                map: object for field validation of profile seting dialogue box form
+                                setModifier: used to close the profile setting dialogue box
+                                formIsValid: required to set initial validation state of the profile setting dialogue box form, valid initially
+                                onSubmitHandler: executes to update details over API when user hit submit 
+                            */
                             <Modifier  
                                 title = { title }  
                                 map = {map}
@@ -202,6 +245,7 @@ class Card extends Component {
                             :null
                         }
                         {this.props.urlUsername == this.props.username ?
+                            //add button, only visible when user is the logged in user
                             <button 
                             style = {{float: 'right'}}
                             className = " AddButton"
@@ -211,14 +255,19 @@ class Card extends Component {
                         }
                            
                     </div>
-                    {
+                    {   //traverse each value of field to display all fields details on the cards
                         this.state.fields.map((field, index) => {
+                            
+                            /*  allFieldValues creates a new list that contains lists having values from field 
+                                as [key, field[key]]
+                            */
                             let allFieldValues = [];
                             for(let key in field) {
                                 if(key != 'id' && key != 'username')
                                     allFieldValues.push([key, field[key]]);
                             }
-                            let keyAndValueClass;
+
+                            let keyAndValueClass; //will be used to set different css classes on differnt field properties
                             return (
                                 <div key={index} className = 'InnerCard'>
                                     <div>
@@ -286,6 +335,7 @@ class Card extends Component {
                                     </div>
                                     <div>
                                         {this.props.urlUsername == this.props.username ?
+                                            //edit button, only visible when user is the logged in user
                                             <button 
                                             onClick = { () => { this.setModifier('edit', field.id, index) } }
                                             className = " EditButton"
@@ -294,6 +344,7 @@ class Card extends Component {
                                             :null
                                         }
                                         {this.props.urlUsername == this.props.username ?
+                                            //delete button, only visible when user is the logged in user
                                             <button 
                                             onClick = { () => { this.setModifier('delete', field.id, index) } }
                                             className = " DeleteButton"
@@ -314,10 +365,12 @@ class Card extends Component {
     } 
 }
 
+/* redux state subscription */
 const mapStateToProps = state => {
     return {
         ...state
     };
 }
 
+/*  redux state subscription with connect */
 export default connect(mapStateToProps)(Card);

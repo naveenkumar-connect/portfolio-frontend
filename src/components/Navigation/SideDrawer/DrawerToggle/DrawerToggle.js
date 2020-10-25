@@ -1,3 +1,5 @@
+/* Displays ham burger styled toggle button on toolbar when displying full navigations items is not possible */
+
 import React from 'react';
 import './DrawerToggle.css';
 

@@ -1,3 +1,5 @@
+/*  Component to display information about the app*/
+
 import React, { Component } from 'react';
 import './AboutApp.css'; 
 import portfolio from '../../Images/portfolio.png';
@@ -15,7 +17,7 @@ class AboutApp extends Component {
                         <h4 style = {{color: "#077bff"}}>Portfolio Web application</h4>
                         <b>Version: </b>1.00                        <br />
                         <b>Developed By: </b>Naveen Kumar Saini     <br />
-                        <b>Portfolio account: </b> TBA          <br/>
+                        <b>Portfolio account: </b> http://13.233.129.164/nks/home          <br/>
                         <br />
                         <h4 style = {{color: "#077bff"}}>Technologies used </h4>
                         <b>Front End: </b>JavaScript and React 16.13.1<br />

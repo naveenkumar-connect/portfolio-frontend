@@ -1,3 +1,8 @@
+/* 
+First JS module that contains the React component that replaces the element with ID root 
+in the index.html file
+*/
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -8,14 +13,17 @@ import { Provider } from 'react-redux';
 import reducer from './Store/Reducer';
 import axios from 'axios';
 
+//sets base URL for APIs
 axios.defaults.baseURL = "http://13.233.129.164/";
 
+//creating a root store for maintaining a central state
 const store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>
 
-    <Provider store = {store} >
+    {/* below store = {store} will make store accessible to all the sub components of <Provider /> */}
+    <Provider store = {store} > 
       <App />
     </Provider>
 
@@ -23,7 +31,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
