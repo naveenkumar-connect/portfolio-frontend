@@ -14,7 +14,7 @@ import reducer from './Store/Reducer';
 import axios from 'axios';
 
 //sets base URL for APIs
-axios.defaults.baseURL = "http://13.233.129.164/";
+axios.defaults.baseURL = "http://13.233.129.164//";
 
 //creating a root store for maintaining a central state
 const store = createStore(reducer);

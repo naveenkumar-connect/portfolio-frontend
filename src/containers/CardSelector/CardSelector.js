@@ -74,11 +74,11 @@ class CardSelector extends Component {
         console.log("In Card Selector render()");
         return (
             <div>
-                /* Modal creates dialogue box for profile picture updation
+                {/* Modal creates dialogue box for profile picture updation
                     props sent to component -
                     flag: Equals to prop's modalFlag. Launches and disposes Modal with true and false value respectively
                     toggleState: Disposes Modal by setting props.Flag to false
-                */
+                */}
                 <Modal flag={this.props.modalFlag} toggleState={this.props.toggleModalFlag}>   
                     <div className = "CardSelectorTitle">
                         Select your Cards
